@@ -8,38 +8,38 @@
 package org.ioe.tprsa.audio.feature;
 
 /**
- * performs Inverser Fourier Transform <br>
- * we used Dct because there is only real coeffs
+ * Performs an inverse Fourier Transform .<br>
+ * We use DCT because there is only real coefficients.
  * 
  * @author Ganesh Tiwari
+ * @author Hanns Holger Rutz
  */
 public class DCT {
 
 	/**
-	 * number of mfcc coeffs
+	 * number of mfcc coefficients
 	 */
-	int numCepstra;
+	final int numCoefficients;
 	/**
 	 * number of Mel Filters
 	 */
-	int M;
+	final int M;
 
 	/**
-	 * @param len
+	 * @param numCoefficients
 	 *            length of array, i.e., number of features
 	 * @param M
-	 *            numbe of Mel Filters
-	 * @return
+	 *            number of Mel Filters
 	 */
-	public DCT(int numCepstra, int M) {
-		this.numCepstra = numCepstra;
+	public DCT(int numCoefficients, int M) {
+		this.numCoefficients = numCoefficients;
 		this.M = M;
 	}
 
 	public double[] performDCT(double y[]) {
-		double cepc[] = new double[numCepstra];
+		final double cepc[] = new double[numCoefficients];
 		// perform DCT
-		for (int n = 1; n <= numCepstra; n++) {
+		for (int n = 1; n <= numCoefficients; n++) {
 			for (int i = 1; i <= M; i++) {
 				cepc[n - 1] += y[i - 1] * Math.cos(Math.PI * (n - 1) / M * (i - 0.5));
 			}

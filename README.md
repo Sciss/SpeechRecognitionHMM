@@ -2,7 +2,9 @@
 
 The is a fork/export from code hosted at https://code.google.com/p/speech-recognition-java-hidden-markov-model-vq-mfcc/
 
-The original in (C)opyright 2012 by is Ganesh Tiwari. Changes contributed (C)opyright 2015 Hanns Holger Rutz. Released under the Apache License 2.0.
+The original is (C)opyright 2012 by Ganesh Tiwari.<br>
+Changes contributed (C)opyright 2015 Hanns Holger Rutz.<br>
+Released under the Apache License 2.0.
 
 ## Original Readme
 
@@ -14,6 +16,6 @@ Project Report View Joint Speech and Speaker Recognition System Project Report
 
 If you have any comment and thoughts on the codes, please leave a message at gtiwari333@gmail.com.
 
-Ganesh Tiwari
-Kathmandu
+Ganesh Tiwari<br>
+Kathmandu<br>
 Nepal 

@@ -44,6 +44,8 @@ Please visit http://ocvolume.sourceforge.net.
 package org.ioe.tprsa.audio.feature;
 
 /**
+ * Fast Fourier Transform.
+ *
  * last updated on June 15, 2002<br>
  * <b>description:</b> FFT class for real signals. Upon entry, N contains the
  * numbers of points in the DFT, real[] and imaginary[] contain the real and
@@ -53,6 +55,7 @@ package org.ioe.tprsa.audio.feature;
  * <b>output:</b> real and imaginary part of DFT output
  * 
  * @author Danny Su
+ * @author Hanns Holger Rutz
  */
 public class FFT {
 
@@ -70,9 +73,7 @@ public class FFT {
 	public float imag[];
 
 	/**
-	 * performs Fast Fourier Transformation<br>
-	 * 
-	 * @param signal
+	 * Performs Fast Fourier Transformation<br>
 	 */
 	public void computeFFT(float signal[]) {
 		numPoints = signal.length;
@@ -87,13 +88,13 @@ public class FFT {
 			imag[i] = 0;
 		}
 		// perform FFT using the real & imag array
-		FFT();
+        computeFFT();
 	}
 
 	/**
 	 * performs Fast Fourier Transformation<br>
 	 */
-	private void FFT() {
+	private void computeFFT() {
 		if (numPoints == 1) { return; }
 		final double pi = Math.PI;
 		final int numStages = (int) (Math.log(numPoints) / Math.log(2));
@@ -101,7 +102,7 @@ public class FFT {
 		int j = halfNumPoints;
 		// FFT time domain decomposition carried out by "bit reversal sorting"
 		// algorithm
-		int k = 0;
+		int k;
 		for (int i = 1; i < numPoints - 2; i++) {
 			if (i < j) {
 				// swap
