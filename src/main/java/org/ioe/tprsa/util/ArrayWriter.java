@@ -54,7 +54,7 @@ public class ArrayWriter {
 	 * @param array
 	 *            input array
 	 */
-	public static void printIntArrayToConole(int[] array) {
+	public static void printIntArrayToConsole(int[] array) {
 		for (int i = 0; i < array.length; i++) {
 			System.out.println(array[i]);
 		}

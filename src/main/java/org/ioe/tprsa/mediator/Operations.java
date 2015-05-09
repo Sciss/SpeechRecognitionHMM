@@ -108,7 +108,7 @@ public class Operations {
 				// get Points object from feature vector
 				Points[] pts = getPointsFromFeatureVector(feature);
 				quantized[j] = cb.quantize(pts);
-				// ArrayWriter.printIntArrayToConole(quantized[j]);
+				// ArrayWriter.printIntArrayToConsole(quantized[j]);
 			}
 			mkv = new HiddenMarkov(6, 256);
 			// TODO: value, MAKE CONSTANTS
