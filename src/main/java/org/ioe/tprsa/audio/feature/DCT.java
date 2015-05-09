@@ -36,7 +36,7 @@ public class DCT {
 		this.M = M;
 	}
 
-	public double[] performDCT(double y[]) {
+	public double[] perform(double y[]) {
 		final double cepc[] = new double[numCoefficients];
 		// perform DCT
 		for (int n = 1; n <= numCoefficients; n++) {

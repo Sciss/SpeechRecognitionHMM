@@ -30,8 +30,9 @@ public class MFCC {
 	final FFT fft;
     final DCT dct;
 
+    /** Creates an MFCC processor with no pre-emphasis. */
     public MFCC(int samplesPerFrame, double sampleRate, int numCoefficients) {
-        this(samplesPerFrame, sampleRate, numCoefficients, true);
+        this(samplesPerFrame, sampleRate, numCoefficients, false);
     }
 
 	public MFCC(int samplesPerFrame, double sampleRate, int numCoefficients, boolean preEmphasis) {
@@ -43,12 +44,12 @@ public class MFCC {
 		dct = new DCT(numCoefficients, numMelFilters);
 	}
 
-	public double[] doMFCC(float[] framedSignal) {
+	public double[] process(float[] frame) {
         if (usePreEmphasis) {
-            framedSignal = preEmphasis(framedSignal);
+            frame = preEmphasis(frame);
         }
 		// Magnitude Spectrum
-        final double[] bin = magnitudeSpectrum(framedSignal);
+        final double[] bin = magnitudeSpectrum(frame);
 		/*
 		 * cBin=frequencies of the channels in terms of FFT bin indices (cBin[i]
 		 * for the i -th channel)
@@ -71,13 +72,13 @@ public class MFCC {
 		// Cepstral coefficients, by DCT
         // System.out.println("after DCT");
 		// ArrayWriter.printDoubleArrayToConsole(cepc);
-		return dct.performDCT(f);
+		return dct.perform(f);
 	}
 
 	private double[] magnitudeSpectrum(float frame[]) {
 		final double magSpectrum[] = new double[frame.length];
 		// calculate FFT for current frame
-		fft.computeFFT(frame);
+		fft.process(frame);
 		// System.err.println("FFT SUCCEED");
 		// calculate magnitude spectrum
 		for (int k = 0; k < frame.length; k++) {

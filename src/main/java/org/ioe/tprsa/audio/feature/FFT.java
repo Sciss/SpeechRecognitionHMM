@@ -58,47 +58,22 @@ package org.ioe.tprsa.audio.feature;
  * @author Hanns Holger Rutz
  */
 public class FFT {
+    float[] real;
+    float[] imag;
 
 	/**
-	 * number of points
+	 * Performs Fast Fourier Transformation in place.
 	 */
-	protected int numPoints;
-	/**
-	 * real part
-	 */
-	public float real[];
-	/**
-	 * imaginary part
-	 */
-	public float imag[];
-
-	/**
-	 * Performs Fast Fourier Transformation<br>
-	 */
-	public void computeFFT(float signal[]) {
-		numPoints = signal.length;
+	public void process(float signal[]) {
+		final int numPoints = signal.length;
 		// initialize real & imag array
-		real = new float[numPoints];
-		imag = new float[numPoints];
-		// move the N point signal into the real part of the complex DFT's time
-		// domain
 		real = signal;
-		// set all of the samples in the imaginary part to zero
-		for (int i = 0; i < imag.length; i++) {
-			imag[i] = 0;
-		}
-		// perform FFT using the real & imag array
-        computeFFT();
-	}
+        imag = new float[numPoints];
 
-	/**
-	 * performs Fast Fourier Transformation<br>
-	 */
-	private void computeFFT() {
-		if (numPoints == 1) { return; }
+		// perform FFT using the real & imag array
 		final double pi = Math.PI;
 		final int numStages = (int) (Math.log(numPoints) / Math.log(2));
-		int halfNumPoints = numPoints >> 1;
+		final int halfNumPoints = numPoints >> 1;
 		int j = halfNumPoints;
 		// FFT time domain decomposition carried out by "bit reversal sorting"
 		// algorithm
@@ -127,12 +102,12 @@ public class FFT {
 			for (int i = 0; i < stage; i++) {
 				LE <<= 1;
 			}
-			int LE2 = LE >> 1;
+            final int LE2 = LE >> 1;
 			double UR = 1;
 			double UI = 0;
 			// calculate sine & cosine values
-			double SR = Math.cos(pi / LE2);
-			double SI = -Math.sin(pi / LE2);
+			final double SR =  Math.cos(pi / LE2);
+            final double SI = -Math.sin(pi / LE2);
 			// loop for each sub DFT
 			for (int subDFT = 1; subDFT <= LE2; subDFT++) {
 				// loop for each butterfly

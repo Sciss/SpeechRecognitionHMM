@@ -116,7 +116,7 @@ public class FeatureExtract {
 	private void calculateMFCC() {
 		for (int i = 0; i < noOfFrames; i++) {
 			// for each frame i, make mfcc from current framed signal
-			mfccFeature[i] = mfcc.doMFCC(framedSignal[i]);// 2D data
+			mfccFeature[i] = mfcc.process(framedSignal[i]);// 2D data
 		}
 	}
 
